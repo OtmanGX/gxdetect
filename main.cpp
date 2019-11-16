@@ -5,9 +5,6 @@
 #include "facedetect.h"
 #include <iostream>
 #include <stdio.h>
-using namespace std;
-using namespace cv;
-//void detectAndDisplay(Mat frame, String shape="circle");
 
 String window_name = "Capture - Face detection";
 int main( void )
@@ -19,17 +16,21 @@ int main( void )
     };
     Mat frame;
 
-    int mode=2; // 1-> Local image file Source ; 2-> Camera source
+    int mode=1; // 1-> Local image file Source ; 2-> Camera source
     if (mode==1) {
         // Read the image file
         Mat frame = imread("lena.tif");
+        if( frame.empty() )
+            {
+                printf(" --(!) Error while loading the image -- Break!");
+                exit(1);
+            }
         detectAndDisplay( frame, "rect" );
         //-- Show what you got
         imshow( window_name, frame );
         char c = (char)waitKey(0);
         return 0;
     } else if (mode==2) {
-
         //-- 2. Read the video stream
         VideoCapture capture;
         capture.open(-1);
@@ -49,8 +50,6 @@ int main( void )
             if( c == 27 ) { break; } // escape
         }
     }
-
-
     return 0;
 }
 
