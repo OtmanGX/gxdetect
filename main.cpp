@@ -6,7 +6,9 @@
 #include <iostream>
 #include <stdio.h>
 
+bool showAndWait(String, Mat);
 String window_name = "Capture - Face detection";
+int mode =1; // 1-> Local image file Source ; 2-> Camera source
 int main( void )
 {
     //-- 1. Load the cascades
@@ -15,8 +17,6 @@ int main( void )
         return -1;
     };
     Mat frame;
-
-    int mode=1; // 1-> Local image file Source ; 2-> Camera source
     if (mode==1) {
         // Read the image file
         Mat frame = imread("lena.tif");
@@ -25,11 +25,10 @@ int main( void )
                 printf(" --(!) Error while loading the image -- Break!");
                 exit(1);
             }
-        detectAndDisplay( frame, "rect" );
+        std::vector<Rect> rects = detectAndDisplay( frame, "rect" );
         //-- Show what you got
-        imshow( window_name, frame );
+        imshow(window_name,frame );
         char c = (char)waitKey(0);
-        return 0;
     } else if (mode==2) {
         //-- 2. Read the video stream
         VideoCapture capture;
@@ -43,7 +42,7 @@ int main( void )
                 break;
             }
             //-- 3. Apply the classifier to the frame
-            detectAndDisplay( frame, "circle" );
+            detectAndDisplay( frame, "rect" );
             //-- Show what you got
             imshow( window_name, frame );
             char c = (char)waitKey(10);
@@ -52,4 +51,5 @@ int main( void )
     }
     return 0;
 }
+
 

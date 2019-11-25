@@ -37,6 +37,9 @@
 		<Linker>
 			<Add option="`opencv-config --ldstaticflags`" />
 		</Linker>
+		<Unit filename="facedetect.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

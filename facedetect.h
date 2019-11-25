@@ -6,7 +6,7 @@ using namespace cv;
 String face_cascade_name = "haarcascades/haarcascade_frontalface_alt.xml";
 CascadeClassifier face_cascade;
 
-void detectAndDisplay(Mat frame,String shape="rect")
+std::vector<Rect> detectAndDisplay(Mat frame,String shape="rect")
 {
     std::vector<Rect> faces;
     Mat frame_gray;
@@ -26,6 +26,7 @@ void detectAndDisplay(Mat frame,String shape="rect")
         }
         Mat faceROI = frame_gray( faces[i] );
     }
+    return faces;
 }
 
 
