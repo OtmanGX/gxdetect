@@ -7,3 +7,14 @@
 	<iostream>
 	<stdio.h>
 
+1574638267 source:c:\users\issam.benkaroum\gxdetect\main.cpp
+	"opencv2/objdetect.hpp"
+	"opencv2/videoio.hpp"
+	"opencv2/highgui.hpp"
+	"opencv2/imgproc.hpp"
+	"facedetect.h"
+	<iostream>
+	<stdio.h>
+
+1574453400 c:\users\issam.benkaroum\gxdetect\facedetect.h
+

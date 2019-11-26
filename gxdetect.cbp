@@ -15,9 +15,23 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="/usr/lib/x86_64-linux-gnu/libopencv_face.so" />
-					<Add library="/usr/lib/x86_64-linux-gnu/libopencv_objdetect.so" />
-					<Add library="/usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_calib3d310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_core310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_features2d310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_flann310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_highgui310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_imgcodecs310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_imgproc310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_ml310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_objdetect310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_photo310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_shape310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_stitching310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_superres310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_ts310.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_video310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_videoio310.dll.a" />
+					<Add library="../Desktop/opencv-bin-mingw32-310/opencv/x86/mingw/lib/libopencv_videostab310.dll.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
