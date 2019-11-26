@@ -11,6 +11,7 @@ String window_name = "Capture - Face detection";
 int mode =1; // 1-> Local image file Source ; 2-> Camera source
 int main( void )
 {
+    //modifier
     //-- 1. Load the cascades
     if( !face_cascade.load( face_cascade_name ) ){
         printf("--(!)Error loading face cascade\n");
