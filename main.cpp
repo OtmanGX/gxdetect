@@ -42,6 +42,7 @@ int main( void )
     filenumber++;
     cropAndSave(frame, faces, "lena");
     return 0;
+
     } else if (mode==2) {
         //-- 2. Read the video stream
         VideoCapture capture;
@@ -56,6 +57,7 @@ int main( void )
             }
             //-- 3. Apply the classifier to the frame
             detectFaces( frame, "circle" );
+
             //-- Show what you got
             imshow( window_name, frame );
             char c = (char)waitKey(10);
@@ -64,4 +66,5 @@ int main( void )
     }
     return 0;
 }
+
 
