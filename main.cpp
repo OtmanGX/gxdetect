@@ -3,33 +3,46 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 #include "facedetect.h"
+#include "crop.h"
 #include <iostream>
 #include <stdio.h>
 
-bool showAndWait(String, Mat);
+#define IMG_REP "imgs"
+
+
+using namespace std;
 String window_name = "Capture - Face detection";
-int mode =1; // 1-> Local image file Source ; 2-> Camera source
+int mode=1; // 1-> Local image file Source ; 2-> Camera source
+
 int main( void )
 {
-    //modifier
+
     //-- 1. Load the cascades
     if( !face_cascade.load( face_cascade_name ) ){
         printf("--(!)Error loading face cascade\n");
         return -1;
     };
     Mat frame;
+
     if (mode==1) {
         // Read the image file
-        Mat frame = imread("lena.tif");
+        ostringstream filename;
+        filename << IMG_REP << "/lena.tif" ;
+        Mat frame = imread(filename.str());
         if( frame.empty() )
             {
                 printf(" --(!) Error while loading the image -- Break!");
                 exit(1);
             }
-        std::vector<Rect> rects = detectAndDisplay( frame, "rect" );
-        //-- Show what you got
-        imshow(window_name,frame );
-        char c = (char)waitKey(0);
+
+    std::vector<Rect> faces = detectFaces( Mat(frame).clone(), "rect" );
+
+
+    int filenumber; // Number of file to be saved
+    filenumber++;
+    cropAndSave(frame, faces, "lena");
+    return 0;
+
     } else if (mode==2) {
         //-- 2. Read the video stream
         VideoCapture capture;
@@ -43,7 +56,8 @@ int main( void )
                 break;
             }
             //-- 3. Apply the classifier to the frame
-            detectAndDisplay( frame, "rect" );
+            detectFaces( frame, "circle" );
+
             //-- Show what you got
             imshow( window_name, frame );
             char c = (char)waitKey(10);
