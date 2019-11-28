@@ -1,11 +1,14 @@
 #ifndef CROP_H_INCLUDED
 #define CROP_H_INCLUDED
 #define IMG_CROP_REP "crop_imgs/"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 using namespace std;
 using namespace cv;
 
 void cropAndSave(Mat frame, vector<Rect> rects, string imgname) {
+    mkdir(IMG_CROP_REP,S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     stringstream filetosave;
     for (int ic = 0; ic < rects.size(); ic++) // Iterate through all current elements (detected faces)
     {
