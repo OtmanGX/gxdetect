@@ -38,4 +38,4 @@ obj/
 gxdetect.*
 
 # Others
-crop_imgs/*
+#crop_imgs/*
