@@ -4,8 +4,8 @@
 #include "opencv2/imgproc.hpp"
 #include "facedetect.h"
 #include "crop.h"
-#include <iostream>
-#include <stdio.h>
+#include "utils.h"
+
 
 #define IMG_REP "imgs"
 
@@ -13,7 +13,7 @@
 using namespace std;
 String window_name = "Capture - Face detection";
 int mode=1; // 1-> Local image file Source ; 2-> Camera source
-
+int filenumber=0; // Number of file to be saved
 int main( void )
 {
 
@@ -25,22 +25,30 @@ int main( void )
     Mat frame;
 
     if (mode==1) {
-        // Read the image file
+        // Read the images
         ostringstream filename;
-        filename << IMG_REP << "/lena.tif" ;
-        Mat frame = imread(filename.str());
-        if( frame.empty() )
+        Mat frame;
+        string output = exec("dir -m imgs");
+        vector<string> splits = split(output, ',');
+        std::vector<Rect> faces;
+        for(string file:splits){
+            trim(file);
+            filename.clear();
+            filename.str("");
+            filename << IMG_REP << "/"<<file ;
+            frame = imread(filename.str());
+            if( frame.empty() )
             {
                 printf(" --(!) Error while loading the image -- Break!");
                 exit(1);
             }
 
-    std::vector<Rect> faces = detectFaces( Mat(frame).clone(), "rect" );
+            faces = detectFaces( Mat(frame).clone(), "rect" );
+            filenumber++;
+            cropAndSave(frame, faces, filenumber);
+        }
+        cv::waitKey(0);
 
-
-    int filenumber; // Number of file to be saved
-    filenumber++;
-    cropAndSave(frame, faces, "lena");
     return 0;
 
     } else if (mode==2) {
@@ -66,5 +74,3 @@ int main( void )
     }
     return 0;
 }
-
-

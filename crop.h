@@ -3,23 +3,25 @@
 #define IMG_CROP_REP "crop_imgs/"
 #include <sys/types.h>
 #include <sys/stat.h>
-
+#include <iostream>
 using namespace std;
 using namespace cv;
 
-void cropAndSave(Mat frame, vector<Rect> rects, string imgname) {
+void cropAndSave(Mat frame, vector<Rect> rects, int imgname) {
     mkdir(IMG_CROP_REP,S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     stringstream filetosave;
+    cv::Mat crop;
     for (int ic = 0; ic < rects.size(); ic++) // Iterate through all current elements (detected faces)
     {
-    filetosave << IMG_CROP_REP << imgname <<"_" << "face" << ic << "_crop.jpg";
+    filetosave.str("");
+    filetosave << IMG_CROP_REP << "image"<< imgname <<"_"<<"face" << ic << "_crop.jpg";
     /* Crop the original image to the defined ROI */
-    cv::Mat crop = frame(rects[ic]);
-    cv::imshow("crop", crop);
+    crop = frame(rects[ic]);
+    cv::imshow(filetosave.str(), crop);
     cv::imwrite(filetosave.str(), crop);
+    filetosave.clear();
     }
-
-    cv::waitKey(0);
+    waitKey(0);
 }
 
 #endif // CROP_H_INCLUDED
